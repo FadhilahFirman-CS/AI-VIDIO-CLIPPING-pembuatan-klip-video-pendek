@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Clipper Studio</title><link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main class="shell">
+    <nav><div class="brand"><span class="brand-mark">✦</span><span>Clipper<span class="muted">.studio</span></span></div><span class="status-dot">● Siap digunakan</span></nav>
+    <section class="hero"><div class="eyebrow">AI VIDEO WORKSPACE</div><h1>Ubah video panjang<br><em>menjadi cerita singkat.</em></h1><p>Temukan momen terbaik secara otomatis dan siapkan konten siap publikasi dalam hitungan menit.</p></section>
+    <section class="workspace">
+      <div class="panel input-panel"><div class="panel-head"><div><span class="step">01</span><h2>Tambahkan video</h2></div><span class="pill">SUMBER VIDEO</span></div>
+        <div class="tabs"><button class="tab active" data-tab="file">⌁ Upload file</button><button class="tab" data-tab="url">↗ Link YouTube</button></div>
+        <div class="time-note" id="timeNote"><span>⚡</span><span><strong>Estimasi proses: sekitar 5 menit</strong><small>File yang sudah ada di perangkat lebih cepat diproses.</small></span></div>
+        <form id="clipForm">
+          <input type="hidden" name="source_type" id="sourceType" value="file">
+          <label class="dropzone" id="dropzone"><input type="file" name="video" id="videoFile" accept="video/*"><span class="upload-icon">↑</span><strong id="fileLabel">Tarik video ke sini</strong><small>atau klik untuk memilih file · MP4, MOV, MKV</small></label>
+          <div class="urlbox hidden" id="urlBox"><span>↗</span><input type="url" name="url" id="youtubeUrl" placeholder="https://youtube.com/watch?v=..."></div>
+          <div class="options"><label>Jumlah klip <select name="clips"><option>4</option><option>3</option><option>5</option><option>6</option></select></label><label>Durasi / klip <select name="target"><option value="25">25 detik</option><option value="30">30 detik</option><option value="45">45 detik</option></select></label></div>
+          <div class="checks format-checks"><span>Format output</span><label><input type="radio" name="format" value="landscape" checked> Landscape 16:9</label><label><input type="radio" name="format" value="vertical"> Vertikal 9:16</label><label><input type="checkbox" name="whisper"> Analisis transkrip</label></div>
+          <button class="primary" type="submit" id="submitBtn">Konfirmasi & mulai clipping <span>→</span></button>
+        </form><div class="error hidden" id="errorBox"></div>
+      </div>
+      <div class="panel result-panel"><div class="panel-head"><div><span class="step">02</span><h2>Hasil clipping</h2></div><span class="pill" id="resultPill">MENUNGGU INPUT</span></div>
+        <div class="empty" id="emptyState"><div class="empty-icon">◌</div><h3>Hasilmu akan muncul di sini</h3><p>Tambahkan video lalu mulai proses clipping untuk melihat preview.</p></div>
+        <div class="processing hidden" id="processing"><div class="loader"></div><h3>Memproses video...</h3><p id="progressText">Menganalisis scene dan audio</p></div>
+        <div class="results hidden" id="results"></div>
+      </div>
+    </section><footer><span>Clipper Studio</span><span>Local workspace · ffmpeg powered</span></footer>
+  </main><script src="{{ url_for('static', filename='app.js') }}"></script>
+</body></html>
